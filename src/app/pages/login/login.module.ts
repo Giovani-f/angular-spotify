@@ -4,15 +4,8 @@ import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
 import { LoginRoutes } from './login.routes';
 
-
-
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(LoginRoutes)
-  ]
+  declarations: [LoginComponent],
+  imports: [CommonModule, RouterModule.forChild(LoginRoutes)],
 })
-export class LoginModule { }
+export class LoginModule {}

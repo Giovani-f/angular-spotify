@@ -4,10 +4,11 @@ export const AppRoutes: Routes = [
   {
     path: '',
     redirectTo: 'login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)
-  }
-]
+    loadChildren: () =>
+      import('./pages/login/login.module').then(m => m.LoginModule),
+  },
+];
