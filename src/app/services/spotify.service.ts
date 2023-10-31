@@ -1,11 +1,49 @@
 import { Injectable } from '@angular/core';
 import { SpotifyConfig } from 'src/environments/environment.development';
+import { IUser } from '../interfaces/user';
+import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, map, of } from 'rxjs';
+
+type SpotifyUser = {
+  id: string;
+  display_name: string;
+  images: { url: string }[];
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpotifyService {
-  constructor() {}
+  user?: IUser;
+
+  constructor(private httpClient: HttpClient) {}
+
+  initUser(): Observable<boolean> {
+    if (!!this.user) {
+      return of(true);
+    }
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return of(false);
+    }
+
+    return this.getUser(token).pipe(
+      map(user => {
+        const data = {
+          id: user.id,
+          displayName: user.display_name,
+          imageUrl: user.images[0].url,
+        };
+        this.user = data;
+        return true;
+      }),
+      catchError(error => {
+        // Lidar com erros, se necessário
+        return of(false);
+      })
+    );
+  }
 
   getLoginUrl(): string {
     const authEndpoint = `${SpotifyConfig.authEndpoint}?`;
@@ -26,6 +64,20 @@ export class SpotifyService {
   }
 
   saveToken(token: string): void {
-    localStorage.setItem('spotify_token', token);
+    localStorage.setItem('token', token);
+  }
+
+  getUser(token: string): Observable<SpotifyUser> {
+    return this.httpClient
+      .get<SpotifyUser>(`${SpotifyConfig.apiUrl}/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
   }
 }

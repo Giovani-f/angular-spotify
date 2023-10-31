@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'player',
     pathMatch: 'full',
   },
   {
@@ -15,5 +16,6 @@ export const AppRoutes: Routes = [
     path: 'player',
     loadChildren: () =>
       import('./pages/player/player.module').then(m => m.PlayerModule),
+    canMatch: [authGuard],
   },
 ];
