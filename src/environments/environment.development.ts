@@ -14,4 +14,5 @@ export const SpotifyConfig = {
     'playlist-read-private',
     'playlist-read-collaborative',
   ],
+  apiUrl: 'https://api.spotify.com/v1',
 };
