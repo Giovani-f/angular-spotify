@@ -18,4 +18,8 @@ export const AppRoutes: Routes = [
       import('./pages/player/player.module').then(m => m.PlayerModule),
     canMatch: [authGuard],
   },
+  {
+    path: '**',
+    redirectTo: 'player',
+  },
 ];
