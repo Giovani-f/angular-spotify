@@ -11,7 +11,7 @@
       *ngFor="let item of menuItems"
       [isActive]="selectedMenuItem === item.description"
       [description]="item.description"
-      (customClick)="onClick(item.description)">
+      (customClick)="onClick(item.description, item.redirect)">
       <fa-icon [icon]="item.icon"></fa-icon>
     </app-navigation-button>
   </div>

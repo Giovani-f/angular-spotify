@@ -12,3 +12,19 @@ html, body {
     @apply flex items-center justify-center;
   }
 }
+
+@layer components {
+  .font-title {
+    @apply text-green-500 block font-bold;
+
+    &-lg {
+      @extend .font-title;
+      @apply text-4xl;
+    }
+
+    &-md {
+      @extend .font-title;
+      @apply text-2xl;
+    }
+  }
+}

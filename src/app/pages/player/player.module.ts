@@ -7,6 +7,8 @@ import { SidebarNavigationComponent } from 'src/app/components/sidebar-navigatio
 import { NavigationButtonComponent } from 'src/app/components/navigation-button/navigation-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarFooterComponent } from 'src/app/components/sidebar-footer/sidebar-footer.component';
+import { HomeComponent } from '../home/home.component';
+import { TopArtistsComponent } from 'src/app/components/top-artists/top-artists.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { SidebarFooterComponent } from 'src/app/components/sidebar-footer/sideba
     SidebarNavigationComponent,
     NavigationButtonComponent,
     SidebarFooterComponent,
+    HomeComponent,
+    TopArtistsComponent,
   ],
   imports: [
     CommonModule,

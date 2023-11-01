@@ -4,7 +4,7 @@ import { authGuard } from './guards/auth.guard';
 export const AppRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'player',
+    redirectTo: 'player/home',
     pathMatch: 'full',
   },
   {
@@ -20,6 +20,6 @@ export const AppRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'player',
+    redirectTo: 'player/home',
   },
 ];

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   faGuitar,
   faHome,
@@ -21,34 +22,38 @@ export class SidebarNavigationComponent implements OnInit {
       description: 'Home',
       icon: faHome,
       route: '/player/home',
-      isActive: true,
+      redirect: true,
     },
     {
       description: 'Search',
       icon: faSearch,
       route: '/player/search',
-      isActive: false,
+      redirect: false,
     },
     {
       description: 'Artists',
       icon: faGuitar,
       route: '/player/artists',
-      isActive: false,
+      redirect: true,
     },
   ];
   selectedMenuItem = 'Home';
 
   playlistItems: IPlaylist[] = [];
 
-  constructor(private spotifyService: SpotifyService) {}
+  constructor(
+    private spotifyService: SpotifyService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     this.getPlaylists(token!);
   }
 
-  onClick(name: string): void {
+  onClick(name: string, redirect?: boolean): void {
     this.selectedMenuItem = name;
+    this.router.navigateByUrl(`/player/${name.toLowerCase()}`);
   }
 
   getPlaylists(token: string): void {

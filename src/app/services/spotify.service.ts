@@ -19,6 +19,14 @@ type SpotifyPlaylist = {
   }[];
 };
 
+type SpotifyArtist = {
+  items: {
+    id: string;
+    name: string;
+    images: { url: string }[];
+  }[];
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -100,6 +108,37 @@ export class SpotifyService {
           Authorization: `Bearer ${token}`,
         },
       })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  getTopArtists(token: string): Observable<SpotifyArtist> {
+    return this.httpClient
+      .get<SpotifyArtist>(`${SpotifyConfig.apiUrl}/me/top/artists?limit=10`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  getTopArtistsTracks(token: string, artistId: string): Observable<any> {
+    return this.httpClient
+      .get<any>(
+        `${SpotifyConfig.apiUrl}/artists/${artistId}/top-tracks?market=BR&limit=3`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .pipe(
         catchError(error => {
           throw error;
