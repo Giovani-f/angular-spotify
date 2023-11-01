@@ -1,21 +1,27 @@
+$h-sidebar-navigation: calc(100px + 150px + 70px);
+
 :host {
-  @apply max-w-[250px] min-h-screen overflow-hidden flex flex-col;
+  @apply max-w-[250px] min-h-screen overflow-hidden flex flex-col border-r-2 border-zinc-800/50;
   .scrollbar {
     &::-webkit-scrollbar {
-      width: 4px; /* Largura da barra de rolagem */
+      width: 4px;
     }
-    /* Estilize o polegar da barra de rolagem (a parte que você arrasta) */
+
     &::-webkit-scrollbar-thumb {
-      background-color: theme("colors.zinc.800/50"); /* Cor do polegar da barra de rolagem */
-      border-radius: 6px; /* Borda arredondada do polegar */
+      background-color: theme("colors.zinc.800/50");
+      border-radius: 6px;
     }
-    /* Estilize a faixa da barra de rolagem (a parte em que o polegar se move) */
+
     &::-webkit-scrollbar-track {
-      background-color: theme("colors.zinc.900"); /* Cor da faixa da barra de rolagem */
+      background-color: theme("colors.zinc.900");
     }
-    /* Estilize os botões da barra de rolagem (seta para cima e seta para baixo) */
+
     &::-webkit-scrollbar-button {
-      display: none; /* Ocultar os botões da barra de rolagem (opcional) */
+      display: none;
     }
+  }
+
+  .sidebar-navigation__playlist {
+    max-height: calc(95vh - $h-sidebar-navigation);
   }
 }

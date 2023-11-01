@@ -1,5 +1,4 @@
-<div
-  class="flex flex-1 flex-col h-full py-0 px-8 border-r-2 border-zinc-800/50">
+<div class="flex flex-1 flex-col h-full py-0 px-8">
   <div class="flex-center min-h-[100px]">
     <img
       class="w-[50%]"
@@ -20,7 +19,7 @@
   <div class="my-3 self-start font-bold text-xs text-zinc-500 uppercase">
     <span class="px-2">Playlists</span>
 
-    <div class="mt-3 overflow-y-auto max-h-[40vh] scrollbar">
+    <div class="mt-3 overflow-y-auto sidebar-navigation__playlist scrollbar">
       <app-navigation-button
         class="font-normal"
         *ngFor="let playlist of playlistItems"
@@ -32,4 +31,7 @@
     </div>
   </div>
 </div>
-<div></div>
+
+<div class="flex-grow-0 block bottom-0 self-end h-[70px] w-full">
+  <p>dale</p>
+</div>
