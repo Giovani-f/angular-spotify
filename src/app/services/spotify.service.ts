@@ -10,6 +10,14 @@ type SpotifyUser = {
   images: { url: string }[];
 };
 
+type SpotifyPlaylist = {
+  items: {
+    id: string;
+    name: string;
+    images: { url: string }[];
+  }[];
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -70,6 +78,20 @@ export class SpotifyService {
   getUser(token: string): Observable<SpotifyUser> {
     return this.httpClient
       .get<SpotifyUser>(`${SpotifyConfig.apiUrl}/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .pipe(
+        catchError(error => {
+          throw error;
+        })
+      );
+  }
+
+  getUserPlaylists(token: string): Observable<SpotifyPlaylist> {
+    return this.httpClient
+      .get<SpotifyPlaylist>(`${SpotifyConfig.apiUrl}/me/playlists?limit=50`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

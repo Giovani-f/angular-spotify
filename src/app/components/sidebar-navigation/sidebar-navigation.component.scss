@@ -1,3 +1,21 @@
 :host {
-  @apply max-w-[250px] min-h-screen overflow-hidden flex flex-col
+  @apply max-w-[250px] min-h-screen overflow-hidden flex flex-col;
+  .scrollbar {
+    &::-webkit-scrollbar {
+      width: 4px; /* Largura da barra de rolagem */
+    }
+    /* Estilize o polegar da barra de rolagem (a parte que você arrasta) */
+    &::-webkit-scrollbar-thumb {
+      background-color: theme("colors.zinc.800/50"); /* Cor do polegar da barra de rolagem */
+      border-radius: 6px; /* Borda arredondada do polegar */
+    }
+    /* Estilize a faixa da barra de rolagem (a parte em que o polegar se move) */
+    &::-webkit-scrollbar-track {
+      background-color: theme("colors.zinc.900"); /* Cor da faixa da barra de rolagem */
+    }
+    /* Estilize os botões da barra de rolagem (seta para cima e seta para baixo) */
+    &::-webkit-scrollbar-button {
+      display: none; /* Ocultar os botões da barra de rolagem (opcional) */
+    }
+  }
 }
