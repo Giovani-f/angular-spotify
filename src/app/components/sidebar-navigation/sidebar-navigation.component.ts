@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   faGuitar,
   faHome,
@@ -14,7 +14,7 @@ import { SpotifyService } from 'src/app/services/spotify.service';
   templateUrl: './sidebar-navigation.component.html',
   styleUrls: ['./sidebar-navigation.component.scss'],
 })
-export class SidebarNavigationComponent {
+export class SidebarNavigationComponent implements OnInit {
   playlistIcon = faMusic;
   menuItems = [
     {

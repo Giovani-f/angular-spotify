@@ -3,6 +3,7 @@ import { SpotifyConfig } from 'src/environments/environment.development';
 import { IUser } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 type SpotifyUser = {
   id: string;
@@ -24,7 +25,10 @@ type SpotifyPlaylist = {
 export class SpotifyService {
   user?: IUser;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
   initUser(): Observable<boolean> {
     if (!!this.user) {
@@ -101,5 +105,11 @@ export class SpotifyService {
           throw error;
         })
       );
+  }
+
+  signOut(): void {
+    localStorage.clear();
+    this.user = undefined;
+    this.router.navigate(['/login']);
   }
 }
