@@ -1,0 +1,7 @@
+:host {
+  @apply w-full block mb-2 px-2;
+
+  .is-active {
+    @apply text-zinc-900 font-medium bg-green-500;
+  }
+}

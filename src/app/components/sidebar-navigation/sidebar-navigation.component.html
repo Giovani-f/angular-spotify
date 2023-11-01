@@ -1,10 +1,19 @@
 <div
   class="flex flex-1 flex-col h-full py-0 px-8 border-r-2 border-zinc-800/50">
-  <div class="flex items-center justify-start min-h-[100px]">
+  <div class="flex-center min-h-[100px]">
     <img
       class="w-[50%]"
       src="assets/images/spotify-logo.png"
       alt="Logo Spotify" />
+  </div>
+  <div class="w-100 min-h-[150px]">
+    <app-navigation-button
+      *ngFor="let item of menuItems; let i = index"
+      [isActive]="item.isActive"
+      [description]="item.description"
+      (customClick)="onClick(i)">
+      <fa-icon [icon]="item.icon"></fa-icon>
+    </app-navigation-button>
   </div>
 </div>
 <div></div>
