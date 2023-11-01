@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const spotifyToken = this.spotifyService.getCallbackAccessToken();
     if (!!spotifyToken) {
       this.spotifyService.saveToken(spotifyToken);
-      this.router.navigate(['/player']);
+      this.router.navigate(['/player/home']);
     }
   }
 }
