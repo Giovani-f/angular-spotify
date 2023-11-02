@@ -8,7 +8,7 @@ $h-sidebar-navigation: calc(100px + 150px + 70px);
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: theme("colors.zinc.800/50");
+      background-color: theme("colors.zinc.900");
       border-radius: 6px;
     }
 
@@ -18,6 +18,14 @@ $h-sidebar-navigation: calc(100px + 150px + 70px);
 
     &::-webkit-scrollbar-button {
       display: none;
+    }
+  }
+
+  &:hover {
+    .scrollbar {
+      &::-webkit-scrollbar-thumb {
+        background-color: theme("colors.green.600");
+      }
     }
   }
 
