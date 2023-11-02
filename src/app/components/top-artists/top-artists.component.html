@@ -12,7 +12,10 @@
     <span class="font-title-md">Top Musics</span>
     <ul class="flex flex-col mt-2">
       <li *ngFor="let track of tracks; let i = index">
-        <p>{{ '- ' + track.name + ' ' + track.duration_ms }}</p>
+        <p class="inline">{{ i + 1 }}. {{ track.name }} -</p>
+        <p class="text-green-500 inline">
+          {{ ' ' + formatTime(track.duration_ms) }}
+        </p>
       </li>
     </ul>
   </div>

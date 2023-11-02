@@ -3,6 +3,7 @@ import { map, switchMap } from 'rxjs';
 import { newArtist } from 'src/app/common/factories';
 import { IArtist } from 'src/app/interfaces/artists';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { milissecondsToMinutes } from 'src/app/utils/format-timer';
 
 @Component({
   selector: 'app-top-artists',
@@ -42,5 +43,9 @@ export class TopArtistsComponent implements OnInit {
         console.log('tracks', tracks);
         this.tracks = tracks.tracks.slice(0, 5);
       });
+  }
+
+  formatTime(milisseconds: number): string {
+    return milissecondsToMinutes(milisseconds);
   }
 }
