@@ -9,6 +9,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarFooterComponent } from 'src/app/components/sidebar-footer/sidebar-footer.component';
 import { HomeComponent } from '../home/home.component';
 import { TopArtistsComponent } from 'src/app/components/top-artists/top-artists.component';
+import { SidebarArtistsComponent } from 'src/app/components/sidebar-artists/sidebar-artists.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TopArtistsComponent } from 'src/app/components/top-artists/top-artists.
     SidebarFooterComponent,
     HomeComponent,
     TopArtistsComponent,
+    SidebarArtistsComponent,
   ],
   imports: [
     CommonModule,

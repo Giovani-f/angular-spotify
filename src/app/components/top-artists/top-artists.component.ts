@@ -19,7 +19,6 @@ export class TopArtistsComponent implements OnInit {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     this.getTopArtists(token!);
-    console.log(this.tracks);
   }
 
   getTopArtists(token: string): void {
@@ -40,7 +39,6 @@ export class TopArtistsComponent implements OnInit {
         })
       )
       .subscribe((tracks: any) => {
-        console.log('tracks', tracks);
         this.tracks = tracks.tracks.slice(0, 5);
       });
   }

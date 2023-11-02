@@ -4,6 +4,7 @@ import { IUser } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { ISong } from '../interfaces/songs';
 
 type SpotifyUser = {
   id: string;
@@ -24,6 +25,25 @@ type SpotifyArtist = {
     id: string;
     name: string;
     images: { url: string }[];
+  }[];
+};
+
+type SpotifyTrack = {
+  items: {
+    track: {
+      id: string;
+      album: {
+        id: string;
+        name: string;
+        images: { url: string }[];
+      };
+      artists: {
+        id: string;
+        name: string;
+      }[];
+      duration_ms: number;
+      name: string;
+    };
   }[];
 };
 
@@ -142,6 +162,37 @@ export class SpotifyService {
       .pipe(
         catchError(error => {
           throw error;
+        })
+      );
+  }
+
+  getLikedSongs(token: string): Observable<ISong[]> {
+    return this.httpClient
+      .get<SpotifyTrack>(`${SpotifyConfig.apiUrl}/me/tracks?limit=10`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .pipe(
+        catchError(error => {
+          throw error;
+        }),
+        map(response => response.items),
+        map(items => {
+          return items.map(item => ({
+            id: item.track.id,
+            name: item.track.name,
+            artists: item.track.artists.map(artist => ({
+              id: artist.id,
+              name: artist.name,
+            })),
+            album: {
+              id: item.track.album.id,
+              name: item.track.album.name,
+              imageUrl: item.track.album.images[0].url,
+            },
+            durationMs: item.track.duration_ms,
+          }));
         })
       );
   }

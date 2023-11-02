@@ -1,3 +1,25 @@
 :host {
   @apply flex justify-between;
+
+  table {
+    thead th {
+      @apply text-xs font-semibold text-zinc-500;
+    }
+
+    th, td {
+      @apply pr-5 whitespace-nowrap overflow-hidden overflow-ellipsis;
+
+      &:nth-child(1) {
+        @apply w-[50px] pl-2;
+      }
+    }
+
+    tr {
+      @apply cursor-pointer hover:text-green-500 text-zinc-300
+    }
+
+    td {
+      @apply py-2 pr-5 mt-5 font-medium text-sm;
+    }
+  }
 }
